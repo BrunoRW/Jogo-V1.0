@@ -93,20 +93,22 @@
 
         const rand = (e)=> {
             getPos();
-            if(e == player){
-                let rand = Math.floor(Math.random() * tamanho) * nw;
-                console.log(rand)
-                player.style.left = `${rand}px`;
-                player.style.top = `${rand}px`;
-            } else {
-                let rand = Math.floor(Math.random() * tamanho) * nw;
-                console.log(rand)
-                fruit.style.left = `${rand}px`;
-                fruit.style.top = `${rand}px`;
+            let randx = Math.floor(Math.random() * tamanho) * nw;
+            let randy = Math.floor(Math.random() * tamanho) * nw;
+            
+            if(e == "player"){
+                player.style.left = `${randx}px`;
+                player.style.top = `${randy}px`;
+            } else {               
+                fruit.style.left = `${randx}px`;
+                fruit.style.top = `${randy}px`;
             }
+
+            console.log(rand)
         }
 
         rand("player");
+        rand("fruit");
         // movimentações
 
         // move left 
