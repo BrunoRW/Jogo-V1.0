@@ -10,6 +10,7 @@
             padding: 0;
             outline: none;
             text-decoration: none;
+            font-family: sans-serif;
         }
         body{
             padding: 5px;
@@ -43,9 +44,16 @@
             box-shadow: inset #0c644e 0 0 20px 0px;
             border-radius: 50%;
         }
+        #score{
+            text-align: center;
+            margin: 20px;
+            font-size: 25px;
+            color: gray;
+        }
     </style>
 </head>
 <body>
+    <h1 id="score">0</h1>
     <div id="screen">
         <div id="player"></div>
         <div id="fruit"></div>
@@ -55,11 +63,16 @@
         const player = document.getElementById("player");
         const screen = document.getElementById("screen");
         const fruit = document.getElementById("fruit");
+        const score = document.getElementById("score");
 
         let tamanho = 10;
+        let points = 0;
 
         let playerX;
         let playerY;
+
+        let fruitX;
+        let fruitY;
         
         let screenH;
         let screenW;
@@ -75,27 +88,23 @@
             playerX = player.offsetLeft;
             playerY = player.offsetTop;
 
+            fruitX = fruit.offsetLeft;
+            fruitY = fruit.offsetTop;
+
             w = screen.offsetWidth - (player.offsetWidth);
             nw = (w / tamanho);
 
             h = screen.offsetWidth - (player.offsetHeight);
             nh = (h / tamanho);
 
-            console.log(`
-            PlayerX: ${playerX}\n
-            PlayerY: ${playerY}\n
-            w: ${w}\n
-            h: ${h}\n
-            nw: ${nw}\n
-            nh: ${nh}\n
-            `)
-        }
+            
+        }        
 
         const rand = (e)=> {
             getPos();
             let randx = Math.floor(Math.random() * tamanho) * nw;
             let randy = Math.floor(Math.random() * tamanho) * nw;
-            
+
             if(e == "player"){
                 player.style.left = `${randx}px`;
                 player.style.top = `${randy}px`;
@@ -103,8 +112,17 @@
                 fruit.style.left = `${randx}px`;
                 fruit.style.top = `${randy}px`;
             }
+        }
 
-            console.log(rand)
+        const checkmove = ()=> {
+            getPos();
+
+            if(playerX == fruitX && playerY == fruitY){
+                points++;
+                score.innerText = points;
+                rand();
+            }
+            
         }
 
         rand("player");
@@ -157,6 +175,7 @@
                 mR(playerX);
             }
             
+            checkmove();
         })
         
     </script>
