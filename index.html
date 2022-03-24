@@ -34,18 +34,28 @@
             border-radius: 3px;
             box-shadow: inset #961717 0 0 20px 0px
         }
+        #fruit{
+            width: calc(7%);
+            aspect-ratio: 1;
+            background: #1daf6b;
+            position: absolute;
+            box-shadow: inset #0c644e 0 0 20px 0px;
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body>
     <div id="screen">
         <div id="player"></div>
+        <div id="fruit"></div>
     </div>
     <script>
         // dados
         const player = document.getElementById("player");
         const screen = document.getElementById("screen");
+        const fruit = document.getElementById("fruit");
 
-        let tamanho = 10;
+        let tamanho = 5;
 
         let playerX;
         let playerY;
@@ -69,8 +79,33 @@
 
             h = screen.offsetWidth - (player.offsetHeight);
             nh = (h / tamanho);
+
+            console.log(`
+            PlayerX: ${playerX}\n
+            PlayerY: ${playerY}\n
+            w: ${w}\n
+            h: ${h}\n
+            nw: ${nw}\n
+            nh: ${nh}\n
+            `)
         }
 
+        const rand = (e)=> {
+            getPos();
+            if(e == player){
+                let rand = Math.floor(Math.random() * tamanho) * nw;
+                console.log(rand)
+                player.style.left = `${rand}px`;
+                player.style.top = `${rand}px`;
+            } else {
+                let rand = Math.floor(Math.random() * tamanho) * nw;
+                console.log(rand)
+                fruit.style.left = `${rand}px`;
+                fruit.style.top = `${rand}px`;
+            }
+        }
+
+        rand("player");
         // movimentações
 
         // move left 
