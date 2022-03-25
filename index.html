@@ -92,10 +92,10 @@
             fruitY = fruit.offsetTop;
 
             w = screen.offsetWidth - (player.offsetWidth);
-            nw = (w / tamanho);
+            nw = Math.floor((w / tamanho));
 
             h = screen.offsetWidth - (player.offsetHeight);
-            nh = (h / tamanho);
+            nh = Math.floor((h / tamanho));
 
             
         }        
@@ -116,6 +116,13 @@
 
         const checkmove = ()=> {
             getPos();
+
+            console.log(`
+            PlayerX: ${playerX}\n
+            PlayerY: ${playerY}\n
+            FruitX: ${fruitX}\n
+            FruitY: ${fruitY}\n
+            `)
 
             if(playerX == fruitX && playerY == fruitY){
                 points++;
