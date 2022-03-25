@@ -165,23 +165,25 @@
         }
         
 
-        //movimentação - captação de tecla
-        window.addEventListener("keypress", (e)=>{
-            
-            getPos();
-
+        const move = (e)=> {
             let key = e.keyCode;
+            let get = e;
 
-            if(key == 119){
+            if(key == 119 || get == 119){
                 mT(playerY);
-            } else if(key == 97){
+            } else if(key == 97 || get == 97){
                 mL(playerX);
-            }else if(key == 115){
+            }else if(key == 115 || get == 115){
                 mB(playerY);
-            }else if(key == 100){
+            }else if(key == 100 || get == 100){
                 mR(playerX);
             }
-            
+        }
+
+        //movimentação - captação de tecla
+        window.addEventListener("keypress", (e)=>{            
+            getPos();
+            move(e);            
             checkmove();
         })
         
