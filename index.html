@@ -94,7 +94,7 @@
             w = screen.offsetWidth - (player.offsetWidth);
             nw = Math.floor((w / tamanho));
 
-            h = screen.offsetWidth - (player.offsetHeight);
+            h = screen.offsetHeight - (player.offsetHeight);
             nh = Math.floor((h / tamanho));
 
             
@@ -103,7 +103,7 @@
         const rand = (e)=> {
             getPos();
             let randx = Math.floor(Math.random() * tamanho) * nw;
-            let randy = Math.floor(Math.random() * tamanho) * nw;
+            let randy = Math.floor(Math.random() * tamanho) * nh;
 
             if(e == "player"){
                 player.style.left = `${randx}px`;
