@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style> 
+    <style>
         *{
             margin: 0;
             padding: 0;
             outline: none;
-            text-decoration: none; 
+            text-decoration: none;
             font-family: sans-serif;
         }
         body{
@@ -43,7 +43,7 @@
             position: absolute;
             box-shadow: inset #0c644e 0 0 20px 0px;
             border-radius: 50%;
-            transition: all .2s;
+            transition: all .1s;
         }
         #score{
             text-align: center;
@@ -109,25 +109,24 @@
             if(e == "player"){
                 player.style.left = `${randx}px`;
                 player.style.top = `${randy}px`;
-            } else {               
+            } else {            
                 fruit.style.left = `${randx}px`;
                 fruit.style.top = `${randy}px`;
+                setTimeout(()=>{
+                    fruit.style.transition = `all .2s`;   
+                    fruit.style.transform = `scale(1)`;   
+                },100)
+                
             }
         }
 
         const checkmove = ()=> {
             getPos();
-
-            console.log(`
-            PlayerX: ${playerX}\n
-            PlayerY: ${playerY}\n
-            FruitX: ${fruitX}\n
-            FruitY: ${fruitY}\n
-            `)
-
             if(playerX == fruitX && playerY == fruitY){
                 points++;
                 score.innerText = points;
+                fruit.style.transition = `all 0s`; 
+                fruit.style.transform = `scale(0)`;   
                 rand();
             }
             
